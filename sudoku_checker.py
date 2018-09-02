@@ -27,34 +27,45 @@ incorrect5 = [[1, 1.5],
 
 lst_example = [1,2,0,3]
 
-def find_hor_sum(lst):
-    sum = 0
-    for x in lst:
-        sum = sum + lst[x]
-    return sum
 
 
 def check_sudoku(lst):
-    matrix_min = 0
-    matrix_max = len(lst)
+    matrix_size = len(lst)
+    digit = 1
+    while digit < matrix_size:
+        i = 0
+        while i < matrix_size:
+            row_count = 0
+            col_count = 0
+            j = 0
+            while j < matrix_size:
+                if lst[i][j] == digit:
+                    row_count = row_count+1
+                if lst[j][i] == digit:
+                   col_count = col_count + 1
+                j = j + 1
+            if row_count !=1 or col_count !=1:
+                return False
+            i = i+1
+        digit = digit +1
+    return True
 
-print(find_hor_sum(lst_example))
-# >>> 6
 
-#print(check_sudoku(incorrect))
+
+print(check_sudoku(incorrect))
 # >>> False
 
-#print(check_sudoku(correct))
+print(check_sudoku(correct))
 # >>> True
 
-#print(check_sudoku(incorrect2))
+print(check_sudoku(incorrect2))
 # >>> False
 
-#print(check_sudoku(incorrect3))
+print(check_sudoku(incorrect3))
 # >>> False
 
-#print(check_sudoku(incorrect4))
+print(check_sudoku(incorrect4))
 # >>> False
 
-#print(check_sudoku(incorrect5))
+print(check_sudoku(incorrect5))
 # >>> False
